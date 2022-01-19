@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Getter @Setter
 @EqualsAndHashCode
 @NoArgsConstructor @AllArgsConstructor
+@Builder
 @Entity
 public class Student {
 
