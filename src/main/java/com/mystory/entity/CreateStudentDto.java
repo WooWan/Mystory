@@ -1,8 +1,11 @@
 package com.mystory.entity;
 
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class CreateStudentDto {
 
     private String name;

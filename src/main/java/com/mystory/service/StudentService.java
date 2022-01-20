@@ -23,19 +23,17 @@ public class StudentService {
     }
 
     @Transactional
-    public void addStudent(CreateStudentDto createStudentDto) {
+    public void addStudent(CreateStudentDto createStudentDto){
         Student student = createStudentDto.toEntity();
 //       이미 가입한 이메일이면 거부
         validateDuplicationEmail(student.getEmail());
-
         studentRepository.save(student);
     }
 
     private void validateDuplicationEmail(String email) {
-        boolean isExist = studentRepository.findStudentByEmail(email)
-                .isEmpty();
+        boolean isExist = studentRepository.existsStudentByEmail(email);
         if (isExist) {
-            throw new BadRequestException(email + "is already signed");
+            throw new BadRequestException("Email " + email + " is signed");
         }
     }
 
@@ -45,9 +43,9 @@ public class StudentService {
     }
 
     @Transactional
-    public void updateStudent(Long studentId, Student student) throws IllegalAccessException {
+    public void updateStudent(Long studentId, Student student) throws BadRequestException {
         Student findStudent = studentRepository.findById(studentId)
-                .orElseThrow(() -> new IllegalAccessException());
+                .orElseThrow(() -> new BadRequestException("213"));
         findStudent.setEmail(student.getEmail());
         findStudent.setGender(student.getGender());
         findStudent.setName(student.getName());
