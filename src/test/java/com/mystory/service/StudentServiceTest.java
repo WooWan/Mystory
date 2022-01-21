@@ -63,10 +63,6 @@ class StudentServiceTest {
 //        //then
         assertThatThrownBy(() -> studentService.addStudent(student))
                 .isInstanceOf(BadRequestException.class)
-                .hasMessageContaining("Email " + student.getEmail() + " is signed");
-    }
-
-    @Test
-    void updateStudent() {
+                .hasMessageContaining("Email " + student.getEmail() + " is already signed");
     }
 }

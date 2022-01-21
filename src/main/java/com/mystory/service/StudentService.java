@@ -33,7 +33,7 @@ public class StudentService {
     private void validateDuplicationEmail(String email) {
         boolean isExist = studentRepository.existsStudentByEmail(email);
         if (isExist) {
-            throw new BadRequestException("Email " + email + " is signed");
+정            throw new BadRequestException("Email " + email + " is already signed");
         }
     }
 
